@@ -9,17 +9,17 @@ function Navbar() {
       </div>
       <ul className="flex justify-evenly items-center min-w-96 ">
         <Link to={'/home'}>
-          <li className=" px-3 font-semibold  text-lg cursor-pointer text-slate-600 hover:text-blue-700">
+          <li className=" px-3 font-semibold  text-lg cursor-pointer text-slate-400 hover:text-blue-600">
             Home
           </li>
         </Link>
-        <li className=" px-3 font-semibold text-lg cursor-pointer text-slate-600 hover:text-blue-700">
+        <li className=" px-3 font-semibold text-lg cursor-pointer text-slate-400 hover:text-blue-600">
           About
         </li>
-        <li className=" px-3 font-semibold text-lg cursor-pointer text-slate-600 hover:text-blue-700">
+        <li className=" px-3 font-semibold text-lg cursor-pointer text-slate-400 hover:text-blue-600">
           Profile
         </li>
-        <li className=" px-3 font-semibold text-lg cursor-pointer text-slate-600 hover:text-blue-700">
+        <li className=" px-3 font-semibold text-lg cursor-pointer text-slate-400 hover:text-blue-600">
           New Chat
         </li>
         <Link to={"/login"}>

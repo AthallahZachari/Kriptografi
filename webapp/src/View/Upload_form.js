@@ -2,16 +2,17 @@ import "../App.css";
 import React, { useState } from "react";
 import Navbar from "./Navbar";
 import axios from "axios";
-import { Link, Navigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
-function Form() {
+const Form = () => {
   const [filename, setFilename] = useState("");
   const [filebody, setFilebody] = useState("");
+
 
   function handleSubmit(event) {
     event.preventDefault();
     axios
-      .post("http://localhost:8081/filepup", { filename, filebody })
+      .post("http://localhost:8081/file", { filename, filebody })
       .then((res) => {
         console.log(res);
 
@@ -32,7 +33,7 @@ function Form() {
       <div className="container text-center mt-28 p-5 mx-auto w-1/2 bg-slate-200 shadow-md rounded-md">
         <div>
           <h1 className=" text-5xl font-bold p-10 mb-5 text-slate-700">
-            File Upload
+            Online Text
           </h1>
         </div>
         <form className=" w-acht m-auto" onSubmit={handleSubmit}>
@@ -68,12 +69,12 @@ function Form() {
             type="submit"
             className="w-1/2 my-5 text-center bg-blue-500 text-white py-3 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue"
           >
-            Sign Up
+            Upload
           </button>
         </form>
       </div>
     </div>
   );
-}
+};
 
 export default Form;

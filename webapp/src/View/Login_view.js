@@ -2,42 +2,37 @@ import Navbar from "./Navbar.js";
 import axios from "axios";
 import "../App.css";
 import { useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
-  const [username, setUsername] = useState("");
+  const [phonenum, setPhonenum] = useState("");
   const [password, setPassword] = useState("");
   const [alerta, setAlerta] = useState("");
   const navigate = useNavigate();
 
-  function handleSubmit(event) {
+
+  function handleSubmit(event){
+
     event.preventDefault();
-    const res = axios
-      .post("http://localhost:8081/logni", { username, password })
+    axios.post("http://localhost:8081/logni", { phonenum, password })
       .then((res) => {
         console.log(res);
         if (res.data.message === "Logged") {
+          const token = res.data.token;
+          localStorage.setItem("verifToken", token);
+          navigate("/home", { state: { phoneNumber: phonenum } });
 
-          const token  = res.data.token;
-          localStorage.setItem('token', token);
-          console.log({token});
-
-          navigate("/home");
         } else {
-
           console.log("Authentication failed");
           if (res.data != "Logged") {
-
             setAlerta("Wrong password/username or please Sign Up first!");
           } else {
-
             setAlerta("");
           }
         }
       })
-
       .catch((err) => console.log(err));
-  }
+  };
 
   return (
     <div className="Login w-full">
@@ -60,7 +55,7 @@ function Login() {
               type="text"
               id="username"
               name="username"
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={(e) => setPhonenum(e.target.value)}
               className="w-full p-2 border rounded-md focus:outline-none focus:border-blue-500"
               placeholder="Enter username"
             />
